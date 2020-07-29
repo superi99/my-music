@@ -6,15 +6,15 @@ import java.io.InputStreamReader;
 
 public class YoutubeUtils {
 
-    public static String generateCommand(String youtubeUrl, String outputUrl) {
-        return Constant.COMMAND.replaceAll("#link", youtubeUrl).replaceAll("#output", outputUrl);
+    public static String generateCommand(String commnad, String youtubeUrl, String outputUrl) {
+        return commnad.replaceAll("#link", youtubeUrl).replaceAll("#output", outputUrl);
     }
 
-    public static void download(String youtubeUrl, String outputUrl) {
+    public static void executeCommand(String command) {
         ProcessBuilder processBuilder = new ProcessBuilder();
 
         // Run a command
-        processBuilder.command("cmd.exe", "/c", generateCommand(youtubeUrl, outputUrl));
+        processBuilder.command("cmd.exe", "/c", command);
 
         try {
 
@@ -34,7 +34,6 @@ public class YoutubeUtils {
             int exitVal = process.waitFor();
             if (exitVal == 0) {
                 System.out.println("Success!");
-                System.out.println(output);
                 System.exit(0);
             } else {
                 //abnormal...
@@ -43,5 +42,15 @@ public class YoutubeUtils {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void download(String youtubeUrl, String outputUrl) {
+        //download info
+        executeCommand(generateCommand(Constant.INFO_COMMAND, youtubeUrl, outputUrl));
+        //download audio
+        executeCommand(generateCommand(Constant.AUDIO_COMMAND, youtubeUrl, outputUrl));
+        //download thumbnail
+        executeCommand(generateCommand(Constant.THUMBNAILS_COMMAND, youtubeUrl, outputUrl));
+
     }
 }
