@@ -47,10 +47,10 @@ public class YoutubeUtils {
     public static void download(String youtubeUrl, String outputUrl) {
         //download info
         executeCommand(generateCommand(Constant.INFO_COMMAND, youtubeUrl, outputUrl));
-        //download audio
-        executeCommand(generateCommand(Constant.AUDIO_COMMAND, youtubeUrl, outputUrl));
-        //download thumbnail
-        executeCommand(generateCommand(Constant.THUMBNAILS_COMMAND, youtubeUrl, outputUrl));
+//        //download audio
+//        executeCommand(generateCommand(Constant.AUDIO_COMMAND, youtubeUrl, outputUrl));
+//        //download thumbnail
+//        executeCommand(generateCommand(Constant.THUMBNAILS_COMMAND, youtubeUrl, outputUrl));
 
     }
 }

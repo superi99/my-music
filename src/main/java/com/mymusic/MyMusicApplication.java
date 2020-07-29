@@ -19,7 +19,7 @@ public class MyMusicApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String playlist = "https://www.youtube.com/playlist?list=PLqL07UaTSDV488783uUsbkfXW2L0d2vol";
-        String output = "audio";
+        String output = "output";
         youtubeService.download(playlist, output);
     }
 }
